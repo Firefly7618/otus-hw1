@@ -53,9 +53,10 @@ set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
 
 set(CPACK_PACKAGE_CONTACT example@example.com)
 
+SET(CPACK_INSTALL_CMAKE_PROJECTS  "${CMAKE_BINARY_DIR};helloworld_cli;ALL;/")
+
 include(CPack)
 
-cpack_add_component(helloworld_cli)
 
 if(BUILD_TESTING)
     add_test(test_version test_version)
