@@ -43,7 +43,7 @@ target_compile_options(test_version PRIVATE
     -Wall -Wextra -pedantic -Werror
 )
 
-install(TARGETS helloworld_cli RUNTIME DESTINATION bin)
+install(TARGETS helloworld_cli RUNTIME DESTINATION bin COMPONENT helloworld)
 
 set(CPACK_GENERATOR DEB)
 
@@ -52,8 +52,6 @@ set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
 set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
 
 set(CPACK_PACKAGE_CONTACT example@example.com)
-
-SET(CPACK_INSTALL_CMAKE_PROJECTS  "${CMAKE_BINARY_DIR};helloworld_cli;ALL;/")
 
 include(CPack)
 
