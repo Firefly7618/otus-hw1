@@ -55,6 +55,8 @@ set(CPACK_PACKAGE_CONTACT example@example.com)
 
 include(CPack)
 
+cpack_add_component(helloworld_cli)
+
 if(BUILD_TESTING)
     add_test(test_version test_version)
 endif()
