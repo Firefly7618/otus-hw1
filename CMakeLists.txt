@@ -13,6 +13,14 @@ add_executable(helloworld_cli main.cpp)
 add_library(helloworld lib.cpp)
 add_executable(test_version test_version.cpp)
 
+# Test on Googletest fwk
+add_subdirectory("${PROJECT_SOURCE_DIR}/googletest")
+add_executable(gtest_version gtest_version.cpp)
+target_include_directories(gtest_version
+    PRIVATE "${PROJECT_SOURCE_DIR}/googletest/googletest/include"
+	    "${CMAKE_BINARY_DIR}")
+target_link_libraries(gtest_version gtest_main)
+
 set_target_properties(helloworld_cli helloworld test_version PROPERTIES
     CXX_STANDARD 14
     CXX_STANDARD_REQUIRED ON
@@ -32,6 +40,9 @@ target_link_libraries(test_version
     ${Boost_LIBRARIES}
     helloworld
 )
+target_link_libraries(gtest_version
+    gtest_main
+    helloworld)
 
 if (MSVC)
     target_compile_options(helloworld_cli PRIVATE
@@ -72,3 +83,4 @@ include(CPack)
 enable_testing()
 
 add_test(test_version test_version)
+add_test(gtest_verstion gtest_version)
